@@ -12,25 +12,26 @@ namespace CRUDBD.Controllers
         {
             return View();
         }
-        public ActionResult Consultar()
+        public ActionResult Consultar(Models.Cliente Clientecadastro)
+        {
+            
+            return View();
+        }
+        public ActionResult Deletar(Models.Cliente Clientecadastro)
         {
            
-            return View();
-        }
-        public ActionResult Deletar()
-        {
 
             return View();
         }
-        public ActionResult Editar()
+        public ActionResult Editar(Models.Cliente Clientecadastro)
         {
-
             return View();
+            
         }
         public void cadastrar(Models.Cliente Clientecadastro)
         {
-
-            Response.Redirect(@"~/views/home/index");
+            Clientecadastro.CadastrarCliente(Clientecadastro);
+            Response.Redirect(@"~/home/index");
 
 
         }

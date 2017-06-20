@@ -29,11 +29,13 @@
     <div class="row">
 
         <div class="col-lg-2">
+           
+
             @Html.LabelFor(Cliente => Cliente.cpf)
 
             @Html.TextBoxFor(Cliente => Cliente.cpf, new { @class = "form-control" })
-            <button type="button" class="btn btn-primary">Consultar</button>
-
+            <button type="submit" class="btn btn-primary">Consultar</button>
+            @Html.ValidationMessageFor(Cliente=>Cliente.cpf)
 
         </div>
 
