@@ -1,0 +1,169 @@
+﻿@using CRUDBD.Models;
+
+@model Cliente
+
+@{
+    ViewBag.Title = "Consultar";
+}
+
+
+
+
+
+<div class="jumbotron">
+    <h2>Consulta</h2>
+</div>
+
+@using (Html.BeginForm("Consultar", "Home", FormMethod.Post))
+{
+
+    <div class="row">
+
+        <div class="col-lg-2">
+            @Html.LabelFor(Cliente => Cliente.cpf)
+
+            @Html.TextBoxFor(Cliente => Cliente.cpf, new { @class = "form-control" })
+            <button type="button" class="btn btn-primary">Consultar</button>
+
+
+        </div>
+      
+
+            <div class="col-lg-2">
+                @if (Model != null)
+                {
+
+                @Html.LabelFor(Cliente => Cliente.Nome)
+                }
+
+
+
+            </div>
+            <div class="col-lg-2">
+
+                @if (Model != null)
+                {
+                @Html.LabelFor(Cliente => Cliente.estadocivil)
+                }
+
+
+            </div>
+            <div class="col-sm-1">
+                @if (Model != null)
+                {
+                @Html.LabelFor(Cliente => Cliente.sexo)
+                }
+
+
+            </div>
+
+        </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-2">
+
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.datadenasicmento)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.tipodedocumento)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model!=null){
+            @Html.LabelFor(Cliente => Cliente.numerodocumento)
+    }
+
+
+        </div>
+        <div class="col-sm-2">
+            @if (Model != null) {
+            @Html.LabelFor(Cliente => Cliente.orgaemissor)
+            }
+
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-2">
+            @if (Model != null) {
+            @Html.LabelFor(Cliente => Cliente.nacionalidade)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.telefone)
+            }
+
+
+        </div>
+        <div class="col-lg-3">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.endereoccad)
+            }
+
+
+        </div>
+        <div class="col-sm-1">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.numero)
+            }
+
+
+        </div>
+
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.endereco.cep)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+            @Html.LabelFor(Cliente => Cliente.endereco.bairro)
+            }
+
+
+        </div>
+        
+
+
+    </div>
+    <br />
+    <br />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+}
+

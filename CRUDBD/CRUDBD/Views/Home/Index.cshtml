@@ -1,0 +1,148 @@
+﻿@using CRUDBD.Models;
+
+@model Cliente
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Cadastro de cliente</h2>
+ </div>
+
+@using (@Html.BeginForm("cadastrar", "Home", FormMethod.Post))
+{ 
+
+    <div class="row">
+
+        <div class="col-lg-2">
+            @Html.LabelFor(Cliente => Cliente.cpf)
+
+            @Html.TextBoxFor(Cliente => Cliente.cpf, new { @class = "form-control" })            
+
+        </div>
+        
+
+        <div class="col-lg-2">
+            @Html.LabelFor(Cliente => Cliente.Nome)
+
+            @Html.TextBoxFor(Cliente => Cliente.Nome, new { @class = "form-control" })
+
+
+        </div>
+        <div class="col-lg-2">
+            @Html.LabelFor(Cliente => Cliente.estadocivil)
+
+            @Html.TextBoxFor(Cliente => Cliente.estadocivil, new { @class = "form-control" })
+
+        </div>
+        <div class="col-sm-1">
+            @Html.LabelFor(Cliente => Cliente.sexo)
+
+            @Html.TextBoxFor(Cliente => Cliente.sexo, new { @class = "form-control" })
+
+        </div>
+       
+    </div>
+<br />
+<div class="row">
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.datadenasicmento)
+
+        @Html.TextBoxFor(Cliente => Cliente.datadenasicmento, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.tipodedocumento)
+
+        @Html.TextBoxFor(Cliente => Cliente.tipodedocumento, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.numerodocumento)
+
+        @Html.TextBoxFor(Cliente => Cliente.numerodocumento, new { @class = "form-control" })
+
+    </div>
+    <div class="col-sm-1">
+        @Html.LabelFor(Cliente => Cliente.orgaemissor)
+
+        @Html.TextBoxFor(Cliente => Cliente.orgaemissor, new { @class = "form-control" })
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.nacionalidade)
+
+        @Html.TextBoxFor(Cliente => Cliente.nacionalidade, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.telefone)
+
+        @Html.TextBoxFor(Cliente => Cliente.telefone, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-3">
+        @Html.LabelFor(Cliente => Cliente.endereoccad)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereoccad, new { @class = "form-control" })
+
+    </div>
+    <div class="col-sm-1">
+        @Html.LabelFor(Cliente => Cliente.numero)
+
+        @Html.TextBoxFor(Cliente => Cliente.numero, new { @class = "form-control" })
+
+    </div>
+    
+</div>
+<br />
+
+<div class="row">
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.cep)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.cep, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.bairro)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.bairro, new { @class = "form-control" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.pais)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.pais, new { @class = "form-control" })
+
+    </div>
+    
+
+</div>
+<br />
+<br />
+<div class="row">
+
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-primary">Cadastrar</button>
+
+
+    </div>
+
+  
+
+</div>
+<br />
+
+
+
+
+
+
+
+
+}
