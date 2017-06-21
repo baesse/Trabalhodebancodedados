@@ -197,5 +197,92 @@ namespace CRUDBD.Models
         }
 
 
+
+        public Cliente BuscarCliente(Cliente cliente)
+        {
+            MySqlConnection Conexao = Models.Banco.GetConexao();
+            MySqlCommand Comando = Models.Banco.GetComando(Conexao);
+            Comando.CommandText ="select nome,cpf,estadocivil,sexo,datanascimento,tipodedocumento,numerododocumento,orgaoemissor,telefone,numeroresidencia,endereco.cep,endereco.LOGRADOURO, cidade.NOMECIDADE, uf.NOMEUF,bairro.NOMEBAIRRO,pais.NOMEPAIS from bdcliente.cliente inner join bdcliente.endereco on cliente.cep = endereco.CEP  inner join bdcliente.bairro on endereco.COD_BAIRRO_FK = bdcliente.bairro.COD_BAIRRO  inner join bdcliente.cidade on bairro.COD_CID_FK = bdcliente.cidade.COD_CIDADE  inner join bdcliente.uf on cidade.COD_UF_FK = bdcliente.uf.COD_UF  inner join bdcliente.pais on uf.COD_PAIS_FK = bdcliente.pais.COD_PAIS where cliente.cpf = @cpf";
+            Comando.Parameters.AddWithValue("@cpf", cliente.cpf);
+            MySqlDataReader reader= Comando.ExecuteReader();
+            Cliente clientebusca = new Cliente();
+            clientebusca.endereco = new Endereco();
+
+            while (reader.Read())
+            {
+                
+
+                clientebusca.Nome = reader.GetString(0);
+                clientebusca.cpf = reader.GetString(1);
+                clientebusca.estadocivil = reader.GetString(2);
+                clientebusca.sexo = reader.GetString(3);
+                clientebusca.datadenasicmento = reader.GetDateTime(4);
+                clientebusca.tipodedocumento = reader.GetString(5);
+                clientebusca.numerodocumento = reader.GetString(6);
+                clientebusca.orgaemissor = reader.GetString(7);
+                clientebusca.telefone = reader.GetString(8);
+                clientebusca.numero = reader.GetString(9);
+                clientebusca.endereco.cep = reader.GetString(10);
+                clientebusca.endereco.logradouro = reader.GetString(11);
+                clientebusca.endereco.cidade = reader.GetString(12);
+                clientebusca.endereco.uf = reader.GetString(13);
+                clientebusca.endereco.bairro = reader.GetString(14);
+                clientebusca.endereco.pais = reader.GetString(15);
+
+            }
+            return clientebusca;
+        }
+
+        public Boolean Deletar(Cliente cliente)
+        {
+            MySqlConnection Conexao = Models.Banco.GetConexao();
+            MySqlCommand Comando = Models.Banco.GetComando(Conexao);
+            Comando.CommandText = "delete from cliente where cliente.cpf = @cpf";
+            Comando.Parameters.AddWithValue("@cpf", cliente.cpf);
+            Comando.ExecuteNonQuery();
+            return true;
+        }
+
+        public Cliente Update(Cliente clientenovo)
+        {
+            //clientenovo = clientenovo.BuscarCliente(clientenovo);
+
+           
+
+               //update cliente 
+                MySqlConnection Conexao = Models.Banco.GetConexao();
+                MySqlCommand Comando = Models.Banco.GetComando(Conexao);
+                Comando.CommandText = "UPDATE cliente SET cpf = @cpf ,nome = @nome ,sexo = @sexo ,datanascimento = @datanascimento ,tipodedocumento = @tipodedocumento ,numerododocumento = @numerododocumento ,orgaoemissor = @orgaoemissor ,telefone = @telefone ,numeroresidencia = @numeroresidencia ,estadocivil = @estadocivil ,cep = @cep WHERE cpf = @CPF;";
+                Comando.Parameters.AddWithValue("@NOME", clientenovo.Nome);
+                Comando.Parameters.AddWithValue("@cpf", clientenovo.cpf);
+                Comando.Parameters.AddWithValue("@SEXO", clientenovo.sexo);
+                Comando.Parameters.AddWithValue("@datanascimento", clientenovo.datadenasicmento);
+                Comando.Parameters.AddWithValue("@tipodedocumento", clientenovo.tipodedocumento);
+                Comando.Parameters.AddWithValue("@numerododocumento", clientenovo.numerodocumento);
+                Comando.Parameters.AddWithValue("@orgaoemissor", clientenovo.orgaemissor);
+                Comando.Parameters.AddWithValue("@telefone", clientenovo.telefone);
+                Comando.Parameters.AddWithValue("@numeroresidencia", clientenovo.numero);
+                Comando.Parameters.AddWithValue("@estadocivil", clientenovo.estadocivil);
+                Comando.Parameters.AddWithValue("@cep", clientenovo.endereco.cep);
+                
+                Comando.ExecuteNonQuery();
+                Comando.Parameters.Clear();
+
+
+            //update endereco 
+            Comando.CommandText = "UPDATE endereco SET CEP = @CEP, LOGRADOURO = @LOGRADOURO  WHERE CEP = @busca";
+            Comando.Parameters.AddWithValue("@CEP", clientenovo.endereco.cep);
+            Comando.Parameters.AddWithValue("@busca", clientenovo.endereco.cep);
+            Comando.Parameters.AddWithValue("@LOGRADOURO", clientenovo.endereco.logradouro);           
+            Comando.ExecuteNonQuery();
+
+            
+            
+            return clientenovo;
+            
+
+        }
+
+
     }
 }

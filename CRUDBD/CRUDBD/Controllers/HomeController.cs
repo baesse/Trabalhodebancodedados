@@ -14,19 +14,62 @@ namespace CRUDBD.Controllers
         }
         public ActionResult Consultar(Models.Cliente Clientecadastro)
         {
-            
-            return View();
+
+            if (Clientecadastro.cpf != null)
+            {
+
+                return View(Clientecadastro.BuscarCliente(Clientecadastro));
+            }
+            else
+            {
+                return View();
+            }
         }
+
+
+
+        
         public ActionResult Deletar(Models.Cliente Clientecadastro)
         {
-           
 
-            return View();
+            if (Clientecadastro.cpf != null)
+            {
+               if(Clientecadastro.Deletar(Clientecadastro))
+                {
+                    Response.Write("<script>alert('Cliente deletado');</script>");
+                }
+
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+
+
+           
         }
         public ActionResult Editar(Models.Cliente Clientecadastro)
         {
-            return View();
+            if (Clientecadastro.cpf ==null)
+            {
+                return View();
+            }
+            else 
+            {
+                return View(Clientecadastro.BuscarCliente(Clientecadastro));
+            }
+           
             
+        }
+
+        public ActionResult Atualizar(Models.Cliente Clientecadastro)
+        {
+           
+                return View("Editar",Clientecadastro.Update(Clientecadastro));
+           
+
+
         }
         public void cadastrar(Models.Cliente Clientecadastro)
         {

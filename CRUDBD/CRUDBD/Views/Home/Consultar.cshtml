@@ -18,7 +18,7 @@
 {
 
     <div class="row">
-
+        
         <div class="col-lg-2">
             @Html.LabelFor(Cliente => Cliente.cpf)
 
@@ -27,13 +27,14 @@
 
 
         </div>
-      
-
+        </div>
+      <br />
+        <div class="row">
             <div class="col-lg-2">
                 @if (Model != null)
                 {
-
-                @Html.LabelFor(Cliente => Cliente.Nome)
+                @Html.LabelFor(Cliente=>Cliente.Nome)              
+        
                 }
 
 
@@ -43,7 +44,7 @@
 
                 @if (Model != null)
                 {
-                @Html.LabelFor(Cliente => Cliente.estadocivil)
+                    @Html.LabelFor(Cliente => Cliente.estadocivil)               
                 }
 
 
@@ -51,7 +52,39 @@
             <div class="col-sm-1">
                 @if (Model != null)
                 {
-                @Html.LabelFor(Cliente => Cliente.sexo)
+                    @Html.LabelFor(Cliente => Cliente.sexo)
+               
+                }
+
+
+            </div>
+
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-2">
+                @if (Model != null)
+                {
+                    @Html.Label(Model.Nome)
+                }
+
+
+
+            </div>
+            <div class="col-lg-2">
+
+                @if (Model != null)
+                {
+                    @Html.Label(Model.estadocivil)
+                }
+
+
+            </div>
+            <div class="col-sm-1">
+                @if (Model != null)
+                {
+                    @Html.Label(Model.sexo)
+
                 }
 
 
@@ -59,12 +92,17 @@
 
         </div>
     <br />
+
+
+
+
     <div class="row">
         <div class="col-lg-2">
 
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.datadenasicmento)
+                @Html.LabelFor(Cliente => Cliente.datadenasicmento)
+          
             }
 
 
@@ -72,39 +110,87 @@
         <div class="col-lg-2">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.tipodedocumento)
+                @Html.LabelFor(Cliente => Cliente.tipodedocumento)
+           
             }
 
 
         </div>
         <div class="col-lg-2">
-            @if (Model!=null){
-            @Html.LabelFor(Cliente => Cliente.numerodocumento)
+            @if (Model != null)
+            {
+                @Html.LabelFor(Cliente => Cliente.numerodocumento)
+            
     }
 
 
         </div>
         <div class="col-sm-2">
-            @if (Model != null) {
-            @Html.LabelFor(Cliente => Cliente.orgaemissor)
+            @if (Model != null)
+            {
+                @Html.LabelFor(Cliente => Cliente.orgaemissor)
+           
+            }
+
+
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-2">
+
+            @if (Model != null)
+            {
+               
+                @Html.Label(Model.datadenasicmento.ToString())
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+               
+                @Html.Label(Model.tipodedocumento)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+              
+                @Html.Label(Model.numerodocumento)
+            }
+
+
+        </div>
+        <div class="col-sm-2">
+            @if (Model != null)
+            {
+               
+                @Html.Label(Model.orgaemissor)
             }
 
 
         </div>
     </div>
     <br />
+
+
+
+
+
     <div class="row">
-        <div class="col-lg-2">
-            @if (Model != null) {
-            @Html.LabelFor(Cliente => Cliente.nacionalidade)
-            }
-
-
-        </div>
+        
         <div class="col-lg-2">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.telefone)
+            @Html.LabelFor(Cliente=>Cliente.telefone)
+           
             }
 
 
@@ -112,7 +198,8 @@
         <div class="col-lg-3">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.endereoccad)
+             @Html.LabelFor(Cliente=>Cliente.endereco.logradouro)
+          
             }
 
 
@@ -120,20 +207,62 @@
         <div class="col-sm-1">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.numero)
+               
+            @Html.LabelFor(Cliente=>Cliente.numero)
+          
             }
 
 
         </div>
 
     </div>
+
+
+
+    <div class="row">
+
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+               
+                @Html.Label(Model.telefone)
+            }
+
+
+        </div>
+        <div class="col-lg-3">
+            @if (Model != null)
+            {
+            
+                @Html.Label(Model.endereco.logradouro)
+            }
+
+
+        </div>
+        <div class="col-sm-1">
+            @if (Model != null)
+            {
+            
+                @Html.Label(Model.numero)
+            }
+
+
+        </div>
+
+    </div>
+
+
+
     <br />
+
+    
 
     <div class="row">
         <div class="col-lg-2">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.endereco.cep)
+               
+                @Html.LabelFor(Cliente=>Cliente.endereco.cep)
             }
 
 
@@ -141,12 +270,37 @@
         <div class="col-lg-2">
             @if (Model != null)
             {
-            @Html.LabelFor(Cliente => Cliente.endereco.bairro)
+                
+                @Html.LabelFor(Cliente=>Cliente.endereco.bairro)
             }
 
 
         </div>
-        
+
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+                
+                @Html.Label(Model.endereco.cep)
+            }
+
+
+        </div>
+        <div class="col-lg-2">
+            @if (Model != null)
+            {
+
+                @Html.Label(Model.endereco.bairro)
+            }
+
+
+        </div>
+
 
 
     </div>
