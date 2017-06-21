@@ -20,6 +20,13 @@
                 </button>
                 @Html.ActionLink("Sistema de Crud", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Consultar", "Consultar", "Home")</li>
+                    <li>@Html.ActionLink("Deletar", "Deletar", "Home")</li>
+                    <li>@Html.ActionLink("Editar", "Editar", "Home")</li>
+                </ul>              
+            </div>
            
         </div>
     </div>
@@ -34,8 +41,11 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/inputmask")
     <script src="~/Scripts/jquery.maskedinput.js"></script>
     @RenderSection("scripts", required: false)
+
+ 
 
 </body>
 </html>

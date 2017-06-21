@@ -15,7 +15,7 @@ namespace CRUDBD.Models
 
             try
             {
-                MySqlConnection Conexao = new MySqlConnection("Server=127.0.0.1;Database=teste1;Uid=root;Pwd=75395146;");
+                MySqlConnection Conexao = new MySqlConnection("Server=127.0.0.1;Database=bdcliente;Uid=root;Pwd=75395146;");
                 Conexao.Open();
                 return Conexao;
             }

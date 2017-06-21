@@ -19,7 +19,16 @@ namespace CRUDBD.Models
         [Required(ErrorMessage = "Favor informar o país")]
         [Display(Name = "País")]
         public String pais { get; set; }
-       
+        [Required(ErrorMessage = "Favor informar o logradouro")]
+        [Display(Name = "Logradouro")]
+        public String logradouro { get; set; }
+        [Required(ErrorMessage = "Favor informar a uf")]
+        [Display(Name = "uf")]
+        public String uf { get; set; }
+        [Required(ErrorMessage = "Favor informar a cidade")]
+        [Display(Name = "cidade")]
+        public String cidade { get; set; }
+
 
     }
 }

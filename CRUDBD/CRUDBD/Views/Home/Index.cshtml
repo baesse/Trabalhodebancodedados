@@ -11,26 +11,25 @@
 <div class="jumbotron">
     <h2>Cadastro de cliente</h2>
  </div>
-<script type="text/javascript">
-
-
-
-jQuery.noConflict();
-jQuery(function($){
-   $("#data").mask("99/99/9999");
-   $("#telefone").mask("(099) 9999-9999");
-   $("#cpf").mask("999.999.999-99");
-   $("#cep").mask("99999-999");
-   $("#cnpj").mask("99.999.999/9999-99");
-   $("#placa").mask("aaa - 9999");
-});
-</script> 
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
+            $("#cpf").inputmask("mask", { "mask": "999.999.999-99" }, { reverse: true });
+            $("#cep").inputmask("mask", { "mask": "99999-999" });
+            $("#nascimento").inputmask("mask", { "mask": "99/99/9999" });
+            $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+            $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
+            $("#ip").inputmask("mask", { "mask": "999.999.999.999" });
+        });
+    </script>
+    }
 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery.maskedinput.js" type="text/javascript"></script>
-
+    
      @using (@Html.BeginForm("cadastrar", "Home", FormMethod.Post))
      {
          @Html.ValidationSummary(true)
@@ -39,7 +38,7 @@ jQuery(function($){
         <div class="col-lg-2">
             @Html.LabelFor(Cliente => Cliente.cpf)
 
-            @Html.TextBoxFor(Cliente => Cliente.cpf, new { @class = "form-control",id ="cpf" })   
+            @Html.TextBoxFor(Cliente => Cliente.cpf, new { @class = "form-control", id = "cpf" })   
             @Html.ValidationMessageFor(Cliente => Cliente.cpf)
            
             
@@ -76,7 +75,7 @@ jQuery(function($){
                     Value = "Divorciado",
                     Selected = true
                 });
-                @Html.DropDownListFor(Cliente=> Cliente.estadocivil,Estadocivil,"",new {@class="form-control" })
+                @Html.DropDownListFor(Cliente => Cliente.estadocivil, Estadocivil, "Estado Civil", new { @class = "form-control" })
             }
 
 
@@ -122,14 +121,50 @@ jQuery(function($){
     <div class="col-lg-2">
         @Html.LabelFor(Cliente => Cliente.datadenasicmento)
 
-        @Html.TextBoxFor(Cliente => Cliente.datadenasicmento, new { @class = "form-control", @type="date"})
+        @Html.TextBoxFor(Cliente => Cliente.datadenasicmento, new { @class = "form-control",id="nascimento", @type = "date" })
         @Html.ValidationMessageFor(Cliente => Cliente.datadenasicmento)
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-3">
         @Html.LabelFor(Cliente => Cliente.tipodedocumento)
 
-        @Html.TextBoxFor(Cliente => Cliente.tipodedocumento, new { @class = "form-control" })
+       
 
+
+
+@{
+    List<SelectListItem> tipodedocumento = new List<SelectListItem>();
+    tipodedocumento.Add(new SelectListItem
+    {
+        Text = "Carteira Nacional de Habilitação",
+        Value = "Carteira Nacional de Habilitação"
+    });
+    tipodedocumento.Add(new SelectListItem
+    {
+        Text = "Carteira de trabalho",
+        Value = "Carteira de trabalho",
+        Selected = true
+    });
+    tipodedocumento.Add(new SelectListItem
+    {
+        Text = "Passaporte brasileiro",
+        Value = "Passaporte brasileiro",
+        Selected = true
+    });
+    tipodedocumento.Add(new SelectListItem
+    {
+        Text = "Cédula de identidade",
+        Value = "Cédula de identidade",
+        Selected = true
+    });
+    tipodedocumento.Add(new SelectListItem
+    {
+        Text = "Título eleitoral",
+        Value = "PTítulo eleitoral",
+        Selected = true
+    });
+}
+    @Html.DropDownListFor(Cliente => Cliente.tipodedocumento, tipodedocumento, "Tipo de documento", new { @class = "form-control" })
+    
     </div>
     <div class="col-lg-2">
         @Html.LabelFor(Cliente => Cliente.numerodocumento)
@@ -137,7 +172,7 @@ jQuery(function($){
         @Html.TextBoxFor(Cliente => Cliente.numerodocumento, new { @class = "form-control" })
 
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
         @Html.LabelFor(Cliente => Cliente.orgaemissor)
 
         @Html.TextBoxFor(Cliente => Cliente.orgaemissor, new { @class = "form-control" })
@@ -146,24 +181,13 @@ jQuery(function($){
 </div>
 <br />
 <div class="row">
-    <div class="col-lg-2">
-        @Html.LabelFor(Cliente => Cliente.nacionalidade)
-
-        @Html.TextBoxFor(Cliente => Cliente.nacionalidade, new { @class = "form-control" })
-
-    </div>
+    
     <div class="col-lg-2">
         @Html.LabelFor(Cliente => Cliente.telefone)
 
         @Html.TextBoxFor(Cliente => Cliente.telefone, new { @class = "form-control" })
 
-    </div>
-    <div class="col-lg-3">
-        @Html.LabelFor(Cliente => Cliente.endereoccad)
-
-        @Html.TextBoxFor(Cliente => Cliente.endereoccad, new { @class = "form-control" })
-        @Html.ValidationMessageFor(Cliente => Cliente.endereoccad)
-    </div>
+    </div>  
     <div class="col-sm-1">
         @Html.LabelFor(Cliente => Cliente.numero)
 
@@ -178,7 +202,25 @@ jQuery(function($){
     <div class="col-lg-2">
         @Html.LabelFor(Cliente => Cliente.endereco.cep)
 
-        @Html.TextBoxFor(Cliente => Cliente.endereco.cep, new { @class = "form-control" })
+        @Html.TextBoxFor(Cliente => Cliente.endereco.cep, new { @class = "form-control",id="cep" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.cidade)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.cidade, new { @class = "form-control", id = "cep" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.uf)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.uf, new { @class = "form-control", id = "cep" })
+
+    </div>
+    <div class="col-lg-2">
+        @Html.LabelFor(Cliente => Cliente.endereco.logradouro)
+
+        @Html.TextBoxFor(Cliente => Cliente.endereco.logradouro, new { @class = "form-control", id = "cep" })
 
     </div>
     <div class="col-lg-2">
@@ -220,7 +262,7 @@ jQuery(function($){
 
         }
 
-        @Html.DropDownListFor(Cliente => Cliente.endereco.pais, paises, "", new { @class = "form-control" })
+        @Html.DropDownListFor(Cliente => Cliente.endereco.pais, paises, "País", new { @class = "form-control" })
         @Html.ValidationMessageFor(Cliente => Cliente.endereco.pais)      
 
         
@@ -242,6 +284,7 @@ jQuery(function($){
 
 </div>
 <br />
+            }
 
 
 
@@ -249,5 +292,3 @@ jQuery(function($){
 
 
 
-
-}
